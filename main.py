@@ -4,19 +4,19 @@ import time
 import os
 import ctypes
 
-# Nastavení vzhledu
+
 ctk.set_appearance_mode("dark")
 
 class BohemiaBoosterPRO(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        # Hlavní nastavení okna
+        
         self.title("Bohemia Booster PRO")
         self.geometry("1100x700")
-        self.configure(fg_color="#0f111a") # Temné pozadí
+        self.configure(fg_color="#0f111a") 
 
-        # Grid systém (0 = Sidebar, 1 = Hlavní obsah)
+       
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
@@ -24,15 +24,15 @@ class BohemiaBoosterPRO(ctk.CTk):
         self.setup_main_view()
 
     def setup_sidebar(self):
-        # Sidebar frame
+        
         self.sidebar = ctk.CTkFrame(self, fg_color="#090a12", width=90, corner_radius=0)
         self.sidebar.grid(row=0, column=0, sticky="nsew")
         
-        # Logo / Ikona navrchu
+        
         self.logo = ctk.CTkLabel(self.sidebar, text="B", font=("Arial", 35, "bold"), text_color="#3b4ff1")
         self.logo.pack(pady=40)
 
-        # Navigační tlačítka (Ikony)
+        
         menu_items = [("🏠", "Home"), ("🚀", "Boost"), ("🎛️", "Tools"), ("🔧", "Fixes")]
         for icon, name in menu_items:
             btn = ctk.CTkButton(self.sidebar, text=icon, width=60, height=60, 
@@ -42,11 +42,11 @@ class BohemiaBoosterPRO(ctk.CTk):
             btn.pack(pady=10)
 
     def setup_main_view(self):
-        # Hlavní kontejner
+        
         self.container = ctk.CTkFrame(self, fg_color="transparent")
         self.container.grid(row=0, column=1, sticky="nsew", padx=40, pady=40)
 
-        # Nadpis a uvítání
+       
         self.title_label = ctk.CTkLabel(self.container, text="Ahoj, Heren!", font=("Arial", 32, "bold"), text_color="#ffffff")
         self.title_label.pack(anchor="w")
         
@@ -54,37 +54,37 @@ class BohemiaBoosterPRO(ctk.CTk):
                                      font=("Arial", 15), text_color="#8b8da9")
         self.subtitle.pack(anchor="w", pady=(5, 30))
 
-        # --- VELKÁ KARTA (BANNER) ---
+        
         self.banner = ctk.CTkFrame(self.container, fg_color="#161926", corner_radius=25, height=280)
         self.banner.pack(fill="x")
         self.banner.pack_propagate(False)
 
-        # Texty v banneru
+       
         ctk.CTkLabel(self.banner, text="BOHEMIA BOOSTER X", font=("Arial", 40, "bold"), text_color="#ffffff").place(x=40, y=40)
         
-        # SLABÝ TEXT (Status Log)
+        
         self.status_log = ctk.CTkLabel(self.banner, text="Systém čeká na vaši akci...", 
                                        font=("Arial", 13), text_color="#454b66")
         self.status_log.place(x=42, y=105)
 
-        # PROGRESS BAR (Ten hezký)
+        
         self.progress_bar = ctk.CTkProgressBar(self.banner, width=550, height=12, 
                                                fg_color="#090a12", progress_color="#3b4ff1")
         self.progress_bar.place(x=40, y=135)
         self.progress_bar.set(0)
 
-        # HLAVNÍ TLAČÍTKO
+        
         self.boost_btn = ctk.CTkButton(self.banner, text="ODPÁLIT OPTIMALIZACI", 
                                        fg_color="#3b4ff1", hover_color="#2a39b1",
                                        width=280, height=55, font=("Arial", 17, "bold"),
                                        corner_radius=12, command=self.start_boost_process)
         self.boost_btn.place(x=40, y=185)
 
-        # --- SEKCE KARET (GRID) ---
+        
         self.grid_frame = ctk.CTkFrame(self.container, fg_color="transparent")
         self.grid_frame.pack(fill="both", expand=True, pady=30)
         
-        # Ukázka karet (Nástroje)
+        
         self.create_card(self.grid_frame, "StoreX", "Debloat Windows aplikací", 0)
         self.create_card(self.grid_frame, "PingX", "Optimalizace sítě", 1)
 
@@ -97,7 +97,7 @@ class BohemiaBoosterPRO(ctk.CTk):
         ctk.CTkLabel(card, text=desc, font=("Arial", 12), text_color="#8b8da9").pack()
         ctk.CTkButton(card, text="Spustit", width=100, height=30, fg_color="#1e2233", hover_color="#3b4ff1").pack(pady=15)
 
-    # --- LOGIKA ---
+    
     def start_boost_process(self):
         self.boost_btn.configure(state="disabled", text="BOOSTUJI...")
         threading.Thread(target=self.logic_thread, daemon=True).start()
@@ -114,9 +114,9 @@ class BohemiaBoosterPRO(ctk.CTk):
         for text, val in steps:
             self.status_log.configure(text=text)
             self.progress_bar.set(val)
-            time.sleep(1.2) # Aby ten uživatel viděl, že to fakt něco "dělá"
+            time.sleep(1.2) 
             
-            # TADY BY BYLY TY TVOJE REGISTRY:
+           
             if val == 0.4: os.system('del /q/f/s %TEMP%\* >nul 2>&1')
 
         self.boost_btn.configure(state="normal", text="OPAKOVAT BOOST")
