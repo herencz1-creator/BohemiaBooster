@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bohemia Booster - Eliminujte lagy a zvyšte FPS</title>
+    <meta name="description" content="Bohemia Booster je nástroj pro optimalizaci Windows, který eliminuje lagy a zvyšuje FPS ve hrách.">
+    <style>
+        body {
+            background-color: #0b0b1a;
+            color: white;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border: 2px solid #1a1a40;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 10px; letter-spacing: 2px; }
+        .subtitle { color: #888; margin-bottom: 40px; font-size: 1.1rem; }
+
+        .top-nav { margin-bottom: 50px; display: flex; gap: 10px; }
+        .nav-btn {
+            background: #161630;
+            border: 1px solid #333;
+            color: #ccc;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { border-color: #7b2cbf; color: white; }
+
+        .download-main {
+            background: transparent;
+            border: 2px solid #7b2cbf;
+            color: white;
+            padding: 15px 60px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(123, 44, 191, 0.3);
+        }
+        .download-main:hover {
+            background: #7b2cbf;
+            box-shadow: 0 0 40px rgba(123, 44, 191, 0.6);
+            transform: scale(1.05);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: #11112b;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #7b2cbf;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 25px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .opt-btn {
+            background: #1a1a40;
+            border: 1px solid #444;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .opt-btn:hover { background: #252560; border-color: #7b2cbf; }
+        .opt-btn span { display: block; font-size: 0.8rem; font-weight: normal; color: #aaa; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-circle" style="width: 400px; height: 400px; top: -100px; left: -100px; opacity: 0.9;"></div>
+    <div class="bg-circle" style="width: 300px; height: 300px; bottom: -50px; right: -50px; opacity: 1;"></div>
+    <div class="bg-circle" style="width: 300px; height: 300px; bottom: 600px; right: 600px; opacity: 0.7;"></div>
+    <div class="bg-circle" style="width: 400px; height: 400px; top: 500px; left: 800px; opacity: 0.8;"></div>
+    <div class="bg-circle" style="width: 400px; height: 400px; top: 250px; left: 400px; opacity: 1.2;"></div>
+    <div class="bg-circle" style="width: 400px; height: 400px; bottom: 600px; right: 160px; opacity: 0.6;"></div>
+    <div class="bg-circle" style="width: 300px; height: 300px; bottom: 50px; left: 50px; opacity: 0.9;"></div>
+
+    <div class="top-nav">
+        <button class="nav-btn">O Bohemia Booster</button>
+        <button class="nav-btn">Jak nainstalovat?</button>
+        <button class="nav-btn">Co to dělá?</button>
+    </div>
+
+    <h1>Bohemia Booster</h1>
+    <p class="subtitle">Eliminujte lagy, zvyšte FPS.</p>
+
+    <button class="download-main" onclick="otevriModal()">Stáhnout</button>
+
+    <p style="margin-top: 20px; color: #555; font-size: 0.8rem;">Verze 1.0.0 ALPHA | Windows 10/11</p>
+
+    <div id="downloadModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="zavriModal()">&times;</span>
+            <h2 style="margin-top: 0;">Vyberte metodu instalace</h2>
+            <p>Jak si přejete Bohemia Booster stáhnout?</p>
+           
+            <div class="options">
+                <a href="https://github.com" class="opt-btn">
+                    GitHub Repository
+                    <span>Oficiální zdroj na GitHubu</span>
+                </a>
+                <a href="https://github.com/latest" class="opt-btn">
+                    Klasický EXE soubor
+                    <span>Přímé stažení nejnovější verze</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function otevriModal() {
+            document.getElementById("downloadModal").style.display = "flex";
+        }
+
+        function zavriModal() {
+            document.getElementById("downloadModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById("downloadModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
