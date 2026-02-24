@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bohemia Booster - Eliminujte lagy a zvyšte FPS</title>
-    <meta name="description" content="Bohemia Booster je nástroj pro optimalizaci Windows, který eliminuje lagy a zvyšuje FPS ve hrách.">
+    <title>Bohemia Booster</title>
     <style>
+        /* CSS STYLY - VZHLED STRÁNKY */
         body {
             background-color: #0b0b1a;
             color: white;
@@ -20,6 +20,7 @@
             text-align: center;
         }
 
+        /* Dekorativní pozadí (kruhy z obrázku) */
         .bg-circle {
             position: absolute;
             border: 2px solid #1a1a40;
@@ -30,6 +31,7 @@
         h1 { font-size: 3.5rem; margin-bottom: 10px; letter-spacing: 2px; }
         .subtitle { color: #888; margin-bottom: 40px; font-size: 1.1rem; }
 
+        /* Horní tlačítka */
         .top-nav { margin-bottom: 50px; display: flex; gap: 10px; }
         .nav-btn {
             background: #161630;
@@ -42,6 +44,7 @@
         }
         .nav-btn:hover { border-color: #7b2cbf; color: white; }
 
+        /* Hlavní tlačítko Stáhnout */
         .download-main {
             background: transparent;
             border: 2px solid #7b2cbf;
@@ -61,11 +64,12 @@
             transform: scale(1.05);
         }
 
+        /* VYSKAKOVACÍ OKNO (MODAL) */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85);
-            display: none;
+            display: none; /* Skryté v základu */
             align-items: center;
             justify-content: center;
             z-index: 100;
@@ -112,13 +116,9 @@
 </head>
 <body>
 
-    <div class="bg-circle" style="width: 400px; height: 400px; top: -100px; left: -100px; opacity: 0.9;"></div>
-    <div class="bg-circle" style="width: 300px; height: 300px; bottom: -50px; right: -50px; opacity: 1;"></div>
-    <div class="bg-circle" style="width: 300px; height: 300px; bottom: 600px; right: 600px; opacity: 0.7;"></div>
-    <div class="bg-circle" style="width: 400px; height: 400px; top: 500px; left: 800px; opacity: 0.8;"></div>
-    <div class="bg-circle" style="width: 400px; height: 400px; top: 250px; left: 400px; opacity: 1.2;"></div>
-    <div class="bg-circle" style="width: 400px; height: 400px; bottom: 600px; right: 160px; opacity: 0.6;"></div>
-    <div class="bg-circle" style="width: 300px; height: 300px; bottom: 50px; left: 50px; opacity: 0.9;"></div>
+    <!-- Dekorace na pozadí -->
+    <div class="bg-circle" style="width: 400px; height: 400px; top: -100px; left: -100px; opacity: 0.3;"></div>
+    <div class="bg-circle" style="width: 300px; height: 300px; bottom: -50px; right: -50px; opacity: 0.2;"></div>
 
     <div class="top-nav">
         <button class="nav-btn">O Bohemia Booster</button>
@@ -127,32 +127,36 @@
     </div>
 
     <h1>Bohemia Booster</h1>
-    <p class="subtitle">Eliminujte lagy, zvyšte FPS.</p>
+    <p class="subtitle">Eliminujte lagy, snižte latenci, zvyšte FPS.</p>
 
+    <!-- Hlavní tlačítko, které spustí funkci 'otevriModal()' -->
     <button class="download-main" onclick="otevriModal()">Stáhnout</button>
 
-    <p style="margin-top: 20px; color: #555; font-size: 0.8rem;">Verze 1.0.0 ALPHA | Windows 10/11</p>
+    <p style="margin-top: 20px; color: #555; font-size: 0.8rem;">Verze.1.0.0 ALPHA | Windows 10/11</p>
 
+
+    <!-- Vyskakovací okno (skryté) -->
     <div id="downloadModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="zavriModal()">&times;</span>
-            <h2 style="margin-top: 0;">Vyberte metodu instalace</h2>
+            <h2 style="margin-top: 0;">Vyberte metodu</h2>
             <p>Jak si přejete Bohemia Booster stáhnout?</p>
-           
+            
             <div class="options">
-                <a href="https://github.com/herencz1-creator/BohemiaBooster" class="opt-btn">
+                <a href="https://github.com" class="opt-btn">
                     GitHub Repository
-                    <span>Oficiální zdroj na GitHubu</span>
+                    <span>Zdrojový kód a verze pro vývojáře</span>
                 </a>
-                <a href="https://release-assets.githubusercontent.com/github-production-release-asset/1164967088/601bbef6-0e33-4c9b-8c05-20880f6b099c?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-02-23T18%3A30%3A08Z&rscd=attachment%3B+filename%3DBohemia-booster.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-02-23T17%3A29%3A17Z&ske=2026-02-23T18%3A30%3A08Z&sks=b&skv=2018-11-09&sig=sHgOFtJGNDTuXDzBbmroPuz3DaHeJ56y2ixyS58xWOo%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc3MTg3MDQ0MywibmJmIjoxNzcxODY4NjQzLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.jt7iesiqoh1hg-SlfxGN9bRxQ-mN9IW55b0csK8GxII&response-content-disposition=attachment%3B%20filename%3DBohemia-booster.exe&response-content-type=application%2Foctet-stream" class="opt-btn">
-                    Klasický EXE soubor
-                    <span>Přímé stažení nejnovější verze</span>
+                <a href="" class="opt-btn">
+                    Udržba
+                    <span>Teď je nefunkční installace neklikat</span>
                 </a>
             </div>
         </div>
     </div>
 
     <script>
+        // JAVASCRIPT - FUNKČNOST TLAČÍTKA
         function otevriModal() {
             document.getElementById("downloadModal").style.display = "flex";
         }
@@ -161,6 +165,7 @@
             document.getElementById("downloadModal").style.display = "none";
         }
 
+        // Zavření okna kliknutím mimo něj
         window.onclick = function(event) {
             let modal = document.getElementById("downloadModal");
             if (event.target == modal) {
@@ -171,4 +176,3 @@
 
 </body>
 </html>
-
